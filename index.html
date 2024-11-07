@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hide {
+        display: none;
+      }
+      * {
+        text-align: center;
+      }
+      input {
+        text-align: left;
+      }
+      div {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>BMI Calculator</h1>
+    <input type="button" value="Sample Data" id="sampleDataButton" />
+    <input type="radio" name="measurement" id="standard" checked />Standard
+    <input type="radio" name="measurement" id="metrics" />Metrics
+
+    <div id="sampledata">
+      <p>sample data</p>
+    </div>
+    <div id="formStandard">
+      <form action="">
+        <div>
+          <label for="">Weight (in lbs): </label>
+          <input type="number" name="" id="weightlb" />
+        </div>
+        <div>
+          <label for="">Height (in feets and inches): </label>
+          <input type="number" name="" id="heightin" />
+        </div>
+        <div>
+          <input type="button" value="Compute BMI" id="computeBMIa" />
+          <input type="button" value="Clear Data" />
+        </div>
+        <div>
+          <label for="">BMI: </label>
+          <input type="number" name="" id="BMIa" disabled />
+        </div>
+      </form>
+    </div>
+    <br />
+
+    <div id="formMetrics">
+      <form action="">
+        <div>
+          <label for="">Weight (in kg): </label>
+          <input type="number" name="" id="" />
+        </div>
+        <div>
+          <label for="">Height (in meter): </label>
+          <input type="number" name="" id="" />
+        </div>
+        <div>
+          <input type="button" value="Compute BMI" />
+          <input type="button" value="Clear Data" />
+        </div>
+        <div>
+          <label for="">BMI: </label>
+          <input type="text" name="" id="" disabled />
+        </div>
+      </form>
+    </div>
+
+    <script>
+      let standardRadio = document.getElementById("standard");
+      let metricsRadio = document.getElementById("metrics");
+      let formStandard = document.getElementById("formStandard");
+      let formMetrics = document.getElementById("formMetrics");
+      let sampleDataButton = document.getElementById("sampleDataButton");
+      let sampledata = document.getElementById("sampledata");
+      let weightlb = document.getElementById("weightlb").value;
+      let heightin = document.getElementById("heightin").value;
+      let BMIa = document.getElementById("BMIa").value;
+      let counter = 0;
+      let result = 0;
+
+      sampledata.classList.add("hide");
+      formMetrics.classList.add("hide");
+
+      standardRadio.addEventListener("click", () => {
+        formStandard.classList.remove("hide");
+        formMetrics.classList.add("hide");
+      });
+
+      metricsRadio.addEventListener("click", () => {
+        formStandard.classList.add("hide");
+        formMetrics.classList.remove("hide");
+      });
+
+      sampleDataButton.addEventListener("click", () => {
+        counter++;
+        if (counter % 2 == 1) {
+          sampledata.style.display = "block";
+        } else {
+          sampledata.style.display = "none";
+        }
+      });
+
+      //   computeBMIa.addEventListener("click", () => {
+      //     console.log(weightlb);
+      //     console.log(heightin);
+      //     BMIa = (weightlb / (heightin * heightin)) * 703;
+      //     console.log(BMIa);
+      //   });
+    </script>
+  </body>
+</html>
