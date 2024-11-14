@@ -35,16 +35,21 @@
           <input type="number" name="" id="weightlb" />
         </div>
         <div>
-          <label for="">Height (in feets and inches): </label>
+          <label for="">Height: feet</label>
+          <input type="number" name="" id="heightft" />
+          <label for="">Height: inches</label>
           <input type="number" name="" id="heightin" />
         </div>
         <div>
           <input type="button" value="Compute BMI" id="computeBMIa" />
-          <input type="button" value="Clear Data" />
+          <input type="button" value="Clear Data" id="standardClear" />
         </div>
         <div>
           <label for="">BMI: </label>
           <input type="number" name="" id="BMIa" disabled />
+        </div>
+        <div>
+          <label for="" id="categoryA"></label>
         </div>
       </form>
     </div>
@@ -53,20 +58,23 @@
     <div id="formMetrics">
       <form action="">
         <div>
-          <label for="">Weight (in kg): </label>
-          <input type="number" name="" id="" />
+          <label for="" id="">Weight (in kg): </label>
+          <input type="number" name="" id="weightkg" />
         </div>
         <div>
-          <label for="">Height (in meter): </label>
-          <input type="number" name="" id="" />
+          <label for="" id="">Height (in meter): </label>
+          <input type="number" name="" id="heightm" />
         </div>
         <div>
-          <input type="button" value="Compute BMI" />
-          <input type="button" value="Clear Data" />
+          <input type="button" id="computeBMIm" value="Compute BMI" />
+          <input type="button" value="Clear Data" id="metricClear" />
         </div>
         <div>
           <label for="">BMI: </label>
-          <input type="text" name="" id="" disabled />
+          <input type="text" name="" id="BMIm" disabled />
+        </div>
+        <div>
+          <label for="" id="categoryM"></label>
         </div>
       </form>
     </div>
@@ -78,18 +86,46 @@
       let formMetrics = document.getElementById("formMetrics");
       let sampleDataButton = document.getElementById("sampleDataButton");
       let sampledata = document.getElementById("sampledata");
-      let weightlb = document.getElementById("weightlb").value;
-      let heightin = document.getElementById("heightin").value;
-      let BMIa = document.getElementById("BMIa").value;
-      let counter = 0;
       let result = 0;
 
       sampledata.classList.add("hide");
       formMetrics.classList.add("hide");
 
+      computeBMIa.addEventListener("click", () => {
+        // extract values from weight and height inputs
+        let weightlb = document.getElementById("weightlb").value;
+        let heightft = document.getElementById("heightft").value;
+        let BMIa = document.getElementById("BMIa");
+        let heightin = parseInt(document.getElementById("heightin").value);
+        let categoryA = document.getElementById("categoryA");
+        // for height inputs => convert feet and inches into inches
+        heightft *= 12;
+        let heightfinal = heightft + heightin;
+        console.log(heightfinal);
+        // calualate bmi using the input values
+        let bmi = (weightlb / (heightfinal * heightfinal)) * 703;
+        // show bmi result in associated textbox
+        BMIa.value = bmi;
+        // call categorizeBMI
+        let result = categorizeBMI(BMIa.value);
+        // show the category in label
+        categoryA.innerHTML = result;
+      });
+
       standardRadio.addEventListener("click", () => {
         formStandard.classList.remove("hide");
         formMetrics.classList.add("hide");
+      });
+
+      computeBMIm.addEventListener("click", () => {
+        // extract values from weight and height inputs
+        let weightkg = document.getElementById("weightkg").value;
+        let heightm = document.getElementById("heightm").value;
+        let BMIm = document.getElementById("BMIm");
+        let categoryM = document.getElementById("categoryM");
+        BMIm.value = weightkg / (heightm * heightm);
+        let result = categorizeBMI(BMIm.value);
+        categoryM.innerHTML = result;
       });
 
       metricsRadio.addEventListener("click", () => {
@@ -98,20 +134,43 @@
       });
 
       sampleDataButton.addEventListener("click", () => {
-        counter++;
-        if (counter % 2 == 1) {
-          sampledata.style.display = "block";
-        } else {
-          sampledata.style.display = "none";
-        }
+        sampledata.classList.toggle("hide");
       });
 
-      //   computeBMIa.addEventListener("click", () => {
-      //     console.log(weightlb);
-      //     console.log(heightin);
-      //     BMIa = (weightlb / (heightin * heightin)) * 703;
-      //     console.log(BMIa);
-      //   });
+      standardClear.addEventListener("click", () => {
+        document.getElementById("weightlb").value = " ";
+        document.getElementById("heightft").value = " ";
+        document.getElementById("BMIa").value = " ";
+        document.getElementById("heightin").value = " ";
+        document.getElementById("categoryA").value = " ";
+      });
+
+      metricClear.addEventListener("click", () => {
+        document.getElementById("weightkg").value = " ";
+        document.getElementById("heightm").value = " ";
+        document.getElementById("BMIm").value = " ";
+        document.getElementById("categoryM").value = " ";
+      });
+
+      function categorizeBMI(bmi) {
+        let result = "";
+        if (bmi < 16.0) {
+          result = "Severely Underweight";
+        } else if (bmi >= 16.0 && bmi < 18.5) {
+          result = "Underweight";
+        } else if (bmi >= 18.5 && bmi < 25.0) {
+          result = "Normal";
+        } else if (bmi >= 25 && bmi < 30) {
+          result = "Overweight";
+        } else if (bmi >= 30 && bmi < 35) {
+          result = "Moderately Obese";
+        } else if (bmi >= 35 && bmi < 40) {
+          result = "Severely Obese";
+        } else {
+          result = "Morbidly Obese";
+        }
+        return result;
+      }
     </script>
   </body>
 </html>
