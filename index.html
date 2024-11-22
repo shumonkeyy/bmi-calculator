@@ -9,16 +9,19 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
     <title>Document</title>
     <style>
       .hide {
         display: none;
       }
       * {
-        text-align: center;
-      }
-      input {
-        text-align: left;
+        font-family: "Nunito", serif;
       }
       div {
         margin-top: 10px;
@@ -26,150 +29,289 @@
       button {
         border: 1px solid black !important;
       }
+      #heightft,
+      #heightin,
+      #computeBMIm,
+      #computeBMIa,
+      #standardClear,
+      #metricClear {
+        width: 49%;
+      }
+      #heightft,
+      #computeBMIm,
+      #computeBMIa {
+        margin-right: 0.5%;
+      }
+      #heightin,
+      #standardClear,
+      #metricClear {
+        margin-left: 0.5%;
+      }
+      .col {
+        background-color: cadetblue;
+        border: 1px solid black;
+      }
+      .blue {
+        background-color: midnightblue;
+        color: white;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
     </style>
   </head>
+
   <body>
-    <h1 class="mt-5">BMI Calculator</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1 class="mt-5">BMI Calculator</h1>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            id="sampleDataButton"
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#sampleModal"
+          >
+            Sample Data
+          </button>
 
-    <!-- Button trigger modal -->
-    <button
-      type="button"
-      id="sampleDataButton"
-      class="btn"
-      data-bs-toggle="modal"
-      data-bs-target="#sampleModal"
-    >
-      Sample Data
-    </button>
+          <input
+            type="radio"
+            name="measurement"
+            id="standard"
+            class="ms-3 me-1"
+            checked
+          />Standard
+          <input
+            type="radio"
+            name="measurement"
+            id="metrics"
+            class="ms-3 me-1"
+          />Metrics
 
-    <input
-      type="radio"
-      name="measurement"
-      id="standard"
-      class="ms-3 me-1"
-      checked
-    />Standard
-    <input
-      type="radio"
-      name="measurement"
-      id="metrics"
-      class="ms-3 me-1"
-    />Metrics
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="sampleModal"
-      tabindex="-1"
-      aria-labelledby="sampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="sampleModalLabel">Sample Data</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="sampleModal"
+            tabindex="-1"
+            aria-labelledby="sampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="sampleModalLabel">
+                    Sample Data
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <h2>Underweight</h2>
+                  <p>
+                    Weight: 45 kg<br />
+                    Height: 1.7 m<br />
+                    Expected BMI: 15.6<br />
+                    Expected Category: Underweight
+                  </p>
+                  <hr />
+                  <h2>Normal</h2>
+                  <p>
+                    Weight: 65 kg<br />
+                    Height: 1.75 m <br />
+                    Expected BMI: 21.2 <br />
+                    Expected Category: Normal
+                  </p>
+                  <hr />
+                  <h2>Overweight</h2>
+                  <p>
+                    Weight: 85 kg<br />
+                    Height: 1.75 m <br />
+                    Expected BMI: 27.8 <br />
+                    Expected Category: Overweight
+                  </p>
+                  <hr />
+                  <h2>Obese</h2>
+                  <p>
+                    Weight: 105 kg<br />
+                    Height: 1.75 m <br />
+                    Expected BMI: 34.3 <br />
+                    Expected Category: Obese
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="modal-body">
-            <h2>Underweight</h2>
-            <p>
-              Weight: 45 kg<br />
-              Height: 1.7 m<br />
-              Expected BMI: 15.6<br />
-              Expected Category: Underweight
-            </p>
-            <hr />
-            <h2>Normal</h2>
-            <p>
-              Weight: 65 kg<br />
-              Height: 1.75 m <br />
-              Expected BMI: 21.2 <br />
-              Expected Category: Normal
-            </p>
-            <hr />
-            <h2>Overweight</h2>
-            <p>
-              Weight: 85 kg<br />
-              Height: 1.75 m <br />
-              Expected BMI: 27.8 <br />
-              Expected Category: Overweight
-            </p>
-            <hr />
-            <h2>Obese</h2>
-            <p>
-              Weight: 105 kg<br />
-              Height: 1.75 m <br />
-              Expected BMI: 34.3 <br />
-              Expected Category: Obese
-            </p>
+
+          <div id="formStandard">
+            <form action="">
+              <div>
+                <label for="">Weight: </label>
+                <br />
+                <input
+                  type="number"
+                  name=""
+                  id="weightlb"
+                  class="w-100"
+                  placeholder="in lbs"
+                />
+              </div>
+              <div>
+                <label for="">Height:</label>
+                <br />
+                <input
+                  type="number"
+                  name=""
+                  id="heightft"
+                  placeholder="in ft"
+                />
+                <input
+                  type="number"
+                  name=""
+                  id="heightin"
+                  placeholder="in in"
+                />
+              </div>
+              <div>
+                <input type="button" value="Compute BMI" id="computeBMIa" />
+                <input
+                  type="button"
+                  value="Clear Data"
+                  id="standardClear"
+                  disabled
+                />
+              </div>
+              <div>
+                <label for="">BMI: </label>
+                <input type="number" name="" id="BMIa" disabled />
+              </div>
+            </form>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
+          <br />
+
+          <div id="formMetrics">
+            <form action="">
+              <div>
+                <label for="" id="">Weight: </label>
+                <br />
+                <input
+                  type="number"
+                  name=""
+                  id="weightkg"
+                  class="w-100"
+                  placeholder="in kg"
+                />
+              </div>
+              <div>
+                <label for="" id="">Height: </label>
+                <br />
+                <input
+                  type="number"
+                  name=""
+                  id="heightm"
+                  class="w-100"
+                  placeholder="in m"
+                />
+              </div>
+              <div>
+                <input type="button" id="computeBMIm" value="Compute BMI" />
+                <input
+                  type="button"
+                  value="Clear Data"
+                  id="metricClear"
+                  disabled
+                />
+              </div>
+              <div>
+                <label for="">BMI: </label>
+                <input type="text" name="" id="BMIm" disabled />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card mt-5">
+            <div class="card-header">Body Mass Index</div>
+            <div class="card-body">
+              <h5 class="card-title">Your Body Mass on the scale:</h5>
+              <div class="container text-center">
+                <div class="row scale">
+                  <div class="col" id="su">&lt;16</div>
+                  <div class="col" id="uw">16-18.5</div>
+                  <div class="col" id="nm">18.5-25</div>
+                  <div class="col" id="ow">25-30</div>
+                  <div class="col" id="ob">30-35</div>
+                  <div class="col" id="sob">35-40</div>
+                  <div class="col" id="mob">&gt;40</div>
+                </div>
+              </div>
+              <br />
+              <h5>BMI Categories</h5>
+              <div class="text-center">
+                <table class="w-100">
+                  <tr>
+                    <th>BMI</th>
+                    <th>Category</th>
+                  </tr>
+                  <tr>
+                    <td>&lt;16</td>
+                    <td>Severely Underweight</td>
+                  </tr>
+                  <tr>
+                    <td>16-18.5</td>
+                    <td>Underweight</td>
+                  </tr>
+                  <tr>
+                    <td>18.5-25</td>
+                    <td>Normal</td>
+                  </tr>
+                  <tr>
+                    <td>25-30</td>
+                    <td>Overweight</td>
+                  </tr>
+                  <tr>
+                    <td>30-35</td>
+                    <td>Moderately Obese</td>
+                  </tr>
+                  <tr>
+                    <td>35-40</td>
+                    <td>Severely Obese</td>
+                  </tr>
+                  <tr>
+                    <td>&gt;40</td>
+                    <td>Morbidly Obese</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div>
+                <label for="" id="categoryM"></label>
+              </div>
+              <div>
+                <label for="" id="categoryA"></label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div id="formStandard">
-      <form action="">
-        <div>
-          <label for="">Weight (in lbs): </label>
-          <input type="number" name="" id="weightlb" />
-        </div>
-        <div>
-          <label for="">Height (in feet):</label>
-          <input type="number" name="" id="heightft" />
-          <label for="">Height (in inches):</label>
-          <input type="number" name="" id="heightin" />
-        </div>
-        <div>
-          <input type="button" value="Compute BMI" id="computeBMIa" />
-          <input type="button" value="Clear Data" id="standardClear" />
-        </div>
-        <div>
-          <label for="">BMI: </label>
-          <input type="number" name="" id="BMIa" disabled />
-        </div>
-        <div>
-          <label for="" id="categoryA"></label>
-        </div>
-      </form>
-    </div>
-    <br />
-
-    <div id="formMetrics">
-      <form action="">
-        <div>
-          <label for="" id="">Weight (in kg): </label>
-          <input type="number" name="" id="weightkg" />
-        </div>
-        <div>
-          <label for="" id="">Height (in meter): </label>
-          <input type="number" name="" id="heightm" />
-        </div>
-        <div>
-          <input type="button" id="computeBMIm" value="Compute BMI" />
-          <input type="button" value="Clear Data" id="metricClear" />
-        </div>
-        <div>
-          <label for="">BMI: </label>
-          <input type="text" name="" id="BMIm" disabled />
-        </div>
-        <div>
-          <label for="" id="categoryM"></label>
-        </div>
-      </form>
     </div>
 
     <script
@@ -184,6 +326,14 @@
       let formStandard = document.getElementById("formStandard");
       let formMetrics = document.getElementById("formMetrics");
       let result = 0;
+
+      let su = document.getElementById("su");
+      let uw = document.getElementById("uw");
+      let nm = document.getElementById("nm");
+      let ow = document.getElementById("ow");
+      let ob = document.getElementById("ob");
+      let sob = document.getElementById("sob");
+      let mob = document.getElementById("mob");
 
       formMetrics.classList.add("hide");
 
@@ -206,6 +356,7 @@
         let result = categorizeBMI(BMIa.value);
         // show the category in label
         categoryA.innerHTML = result;
+        standardClear.disabled = false;
       });
 
       standardRadio.addEventListener("click", () => {
@@ -222,6 +373,7 @@
         BMIm.value = weightkg / (heightm * heightm);
         let result = categorizeBMI(BMIm.value);
         categoryM.innerHTML = result;
+        metricClear.disabled = false;
       });
 
       metricsRadio.addEventListener("click", () => {
@@ -235,6 +387,7 @@
         document.getElementById("BMIa").value = " ";
         document.getElementById("heightin").value = " ";
         document.getElementById("categoryA").innerHTML = " ";
+        standardClear.disabled = true;
       });
 
       metricClear.addEventListener("click", () => {
@@ -242,24 +395,39 @@
         document.getElementById("heightm").value = " ";
         document.getElementById("BMIm").value = " ";
         document.getElementById("categoryM").innerHTML = " ";
+        metricClear.disabled = true;
       });
 
       function categorizeBMI(bmi) {
         let result = "";
+        su.classList.remove("blue");
+        uw.classList.remove("blue");
+        nm.classList.remove("blue");
+        ow.classList.remove("blue");
+        ob.classList.remove("blue");
+        sob.classList.remove("blue");
+        mob.classList.remove("blue");
         if (bmi < 16.0) {
           result = "Severely Underweight";
+          su.classList.add("blue");
         } else if (bmi >= 16.0 && bmi < 18.5) {
           result = "Underweight";
+          uw.classList.add("blue");
         } else if (bmi >= 18.5 && bmi < 25.0) {
           result = "Normal";
+          nm.classList.add("blue");
         } else if (bmi >= 25 && bmi < 30) {
           result = "Overweight";
+          ow.classList.add("blue");
         } else if (bmi >= 30 && bmi < 35) {
           result = "Moderately Obese";
+          ob.classList.add("blue");
         } else if (bmi >= 35 && bmi < 40) {
           result = "Severely Obese";
+          sob.classList.add("blue");
         } else {
           result = "Morbidly Obese";
+          mob.classList.add("blue");
         }
         return result;
       }
