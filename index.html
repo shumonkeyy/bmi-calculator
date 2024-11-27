@@ -15,7 +15,8 @@
       href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <link rel="shortcut icon" href="BMI.png" type="image/x-icon" />
+    <title>BMI Calculator</title>
     <style>
       .hide {
         display: none;
@@ -48,11 +49,11 @@
         margin-left: 0.5%;
       }
       .col {
-        background-color: cadetblue;
+        background-color: rgb(234, 219, 178);
         border: 1px solid black;
       }
       .blue {
-        background-color: midnightblue;
+        background-color: rgb(65, 47, 21);
         color: white;
       }
       table,
@@ -67,7 +68,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h1 class="mt-5">BMI Calculator</h1>
+          <h1 class="mt-4">BMI Calculator</h1>
           <!-- Button trigger modal -->
           <button
             type="button"
@@ -252,7 +253,7 @@
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button
-                    class="accordion-button"
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
@@ -343,7 +344,7 @@
         </div>
 
         <div class="col-md-6">
-          <div class="card mt-5">
+          <div class="card mt-4">
             <div class="card-header">Body Mass Index</div>
             <div class="card-body">
               <h5 class="card-title">Your Body Mass on the scale:</h5>
@@ -398,10 +399,14 @@
               </div>
 
               <div>
-                <label for="" id="categoryM"></label>
+                <center>
+                  <h1><label for="" id="categoryM" class="mt-0"></label></h1>
+                </center>
               </div>
               <div>
-                <label for="" id="categoryA"></label>
+                <center>
+                  <h1><label for="" id="categoryA" class="mt-0"></label></h1>
+                </center>
               </div>
             </div>
           </div>
