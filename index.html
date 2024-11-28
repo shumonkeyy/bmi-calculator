@@ -61,6 +61,9 @@
       td {
         border: 1px solid black;
       }
+      .alert {
+        height: 75px;
+      }
     </style>
   </head>
 
@@ -70,96 +73,18 @@
         <div class="col-md-6">
           <h1 class="mt-4">BMI Calculator</h1>
           <!-- Button trigger modal -->
-          <button
-            type="button"
-            id="sampleDataButton"
-            class="btn"
-            data-bs-toggle="modal"
-            data-bs-target="#sampleModal"
-          >
-            Sample Data
-          </button>
-
           <input
             type="radio"
             name="measurement"
             id="standard"
-            class="ms-3 me-1"
             checked
-          />Standard
+          />&nbsp;Standard
           <input
             type="radio"
             name="measurement"
             id="metrics"
-            class="ms-3 me-1"
-          />Metrics
-
-          <!-- Modal -->
-          <div
-            class="modal fade"
-            id="sampleModal"
-            tabindex="-1"
-            aria-labelledby="sampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-scrollable">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="sampleModalLabel">
-                    Sample Data
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <h2>Underweight</h2>
-                  <p>
-                    Weight: 45 kg<br />
-                    Height: 1.7 m<br />
-                    Expected BMI: 15.6<br />
-                    Expected Category: Underweight
-                  </p>
-                  <hr />
-                  <h2>Normal</h2>
-                  <p>
-                    Weight: 65 kg<br />
-                    Height: 1.75 m <br />
-                    Expected BMI: 21.2 <br />
-                    Expected Category: Normal
-                  </p>
-                  <hr />
-                  <h2>Overweight</h2>
-                  <p>
-                    Weight: 85 kg<br />
-                    Height: 1.75 m <br />
-                    Expected BMI: 27.8 <br />
-                    Expected Category: Overweight
-                  </p>
-                  <hr />
-                  <h2>Obese</h2>
-                  <p>
-                    Weight: 105 kg<br />
-                    Height: 1.75 m <br />
-                    Expected BMI: 34.3 <br />
-                    Expected Category: Obese
-                  </p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+            class="ms-4"
+          />&nbsp;Metrics
 
           <div id="formStandard">
             <form action="">
@@ -171,27 +96,22 @@
                   name=""
                   id="weightlb"
                   class="w-100"
-                  placeholder="in lbs"
+                  placeholder="lbs"
                 />
               </div>
               <div>
                 <label for="">Height:</label>
                 <br />
-                <input
-                  type="number"
-                  name=""
-                  id="heightft"
-                  placeholder="in ft"
-                />
-                <input
-                  type="number"
-                  name=""
-                  id="heightin"
-                  placeholder="in in"
-                />
+                <input type="number" name="" id="heightft" placeholder="ft" />
+                <input type="number" name="" id="heightin" placeholder="in" />
               </div>
               <div>
-                <input type="button" value="Compute BMI" id="computeBMIa" />
+                <input
+                  type="button"
+                  value="Compute BMI"
+                  id="computeBMIa"
+                  onclick="location.href='#calculation'"
+                />
                 <input
                   type="button"
                   value="Clear Data"
@@ -217,7 +137,7 @@
                   name=""
                   id="weightkg"
                   class="w-100"
-                  placeholder="in kg"
+                  placeholder="kg"
                 />
               </div>
               <div>
@@ -228,11 +148,16 @@
                   name=""
                   id="heightm"
                   class="w-100"
-                  placeholder="in m"
+                  placeholder="m"
                 />
               </div>
               <div>
-                <input type="button" id="computeBMIm" value="Compute BMI" />
+                <input
+                  type="button"
+                  id="computeBMIm"
+                  value="Compute BMI"
+                  onclick="location.href='#calculation'"
+                />
                 <input
                   type="button"
                   value="Clear Data"
@@ -245,6 +170,15 @@
                 <input type="text" name="" id="BMIm" disabled />
               </div>
             </form>
+          </div>
+
+          <div id="alert" class="hide">
+            <div
+              class="alert alert-warning d-flex align-items-center"
+              role="alert"
+            >
+              <div>Please fill in the required spaces.</div>
+            </div>
           </div>
 
           <div>
@@ -343,7 +277,7 @@
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div id="calculation" class="col-md-6">
           <div class="card mt-4">
             <div class="card-header mt-0">Body Mass Index</div>
             <div class="card-body">
@@ -414,6 +348,12 @@
       </div>
     </div>
 
+    <footer style="background-color: rgb(234, 219, 178)">
+      <div class="ms-5 mt-3 py-3">
+        <p>Created by Moe Pwint Phyu. Copyright &copy; 2024.</p>
+      </div>
+    </footer>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -426,6 +366,7 @@
       let formStandard = document.getElementById("formStandard");
       let formMetrics = document.getElementById("formMetrics");
       let result = 0;
+      let alert = document.getElementById("alert");
 
       let su = document.getElementById("su");
       let uw = document.getElementById("uw");
@@ -438,18 +379,28 @@
       formMetrics.classList.add("hide");
 
       computeBMIa.addEventListener("click", () => {
+        alert.classList.add("hide");
         // extract values from weight and height inputs
-        let weightlb = document.getElementById("weightlb").value;
-        let heightft = document.getElementById("heightft").value;
+        let weightlb = parseInt(document.getElementById("weightlb").value);
+        let heightft = parseInt(document.getElementById("heightft").value);
         let BMIa = document.getElementById("BMIa");
         let heightin = parseInt(document.getElementById("heightin").value);
         let categoryA = document.getElementById("categoryA");
+        //check if all inputs have a value
+        if (isNaN(weightlb) || isNaN(heightft)) {
+          alert.classList.remove("hide");
+          return;
+        }
+        if (isNaN(heightin)) {
+          heightin = 0;
+        }
         // for height inputs => convert feet and inches into inches
         heightft *= 12;
         let heightfinal = heightft + heightin;
         console.log(heightfinal);
         // calualate bmi using the input values
         let bmi = (weightlb / (heightfinal * heightfinal)) * 703;
+        bmi = Math.round(bmi * 100) / 100;
         // show bmi result in associated textbox
         BMIa.value = bmi;
         // call categorizeBMI
@@ -460,67 +411,66 @@
       });
 
       standardRadio.addEventListener("click", () => {
+        removeColor();
         formStandard.classList.remove("hide");
         formMetrics.classList.add("hide");
+        categoryA.classList.remove("hide");
+        categoryM.classList.add("hide");
+        alert.classList.add("hide");
       });
 
       computeBMIm.addEventListener("click", () => {
+        alert.classList.add("hide");
         // extract values from weight and height inputs
-        let weightkg = document.getElementById("weightkg").value;
-        let heightm = document.getElementById("heightm").value;
+        let weightkg = parseInt(document.getElementById("weightkg").value);
+        let heightm = parseInt(document.getElementById("heightm").value);
         let BMIm = document.getElementById("BMIm");
         let categoryM = document.getElementById("categoryM");
-        BMIm.value = weightkg / (heightm * heightm);
+        if (isNaN(weightkg) || isNaN(heightm)) {
+          alert.classList.remove("hide");
+          return;
+        }
+        let bmi = weightkg / (heightm * heightm);
+        bmi = Math.round(bmi * 100) / 100;
+        BMIm.value = bmi;
         let result = categorizeBMI(BMIm.value);
         categoryM.innerHTML = result;
         metricClear.disabled = false;
       });
 
       metricsRadio.addEventListener("click", () => {
+        removeColor();
         formStandard.classList.add("hide");
         formMetrics.classList.remove("hide");
+        categoryM.classList.remove("hide");
+        categoryA.classList.add("hide");
+        alert.classList.add("hide");
       });
 
       standardClear.addEventListener("click", () => {
-        su.classList.remove("blue");
-        uw.classList.remove("blue");
-        nm.classList.remove("blue");
-        ow.classList.remove("blue");
-        ob.classList.remove("blue");
-        sob.classList.remove("blue");
-        mob.classList.remove("blue");
+        removeColor();
         document.getElementById("weightlb").value = " ";
         document.getElementById("heightft").value = " ";
         document.getElementById("BMIa").value = " ";
         document.getElementById("heightin").value = " ";
         document.getElementById("categoryA").innerHTML = " ";
         standardClear.disabled = true;
+        alert.classList.add("hide");
       });
 
       metricClear.addEventListener("click", () => {
-        su.classList.remove("blue");
-        uw.classList.remove("blue");
-        nm.classList.remove("blue");
-        ow.classList.remove("blue");
-        ob.classList.remove("blue");
-        sob.classList.remove("blue");
-        mob.classList.remove("blue");
+        removeColor();
         document.getElementById("weightkg").value = " ";
         document.getElementById("heightm").value = " ";
         document.getElementById("BMIm").value = " ";
         document.getElementById("categoryM").innerHTML = " ";
         metricClear.disabled = true;
+        alert.classList.add("hide");
       });
 
       function categorizeBMI(bmi) {
         let result = "";
-        su.classList.remove("blue");
-        uw.classList.remove("blue");
-        nm.classList.remove("blue");
-        ow.classList.remove("blue");
-        ob.classList.remove("blue");
-        sob.classList.remove("blue");
-        mob.classList.remove("blue");
+        removeColor();
         if (bmi < 16.0) {
           result = "Severely Underweight";
           su.classList.add("blue");
@@ -544,6 +494,16 @@
           mob.classList.add("blue");
         }
         return result;
+      }
+
+      function removeColor() {
+        su.classList.remove("blue");
+        uw.classList.remove("blue");
+        nm.classList.remove("blue");
+        ow.classList.remove("blue");
+        ob.classList.remove("blue");
+        sob.classList.remove("blue");
+        mob.classList.remove("blue");
       }
     </script>
   </body>
